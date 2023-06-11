@@ -145,7 +145,9 @@ declare interface ITypedefDoclet extends IDocletBase {
     params?: IDocletProp[];
     returns?: IDocletReturn[];
 }
-
+declare interface ISignalDoclet extends IDocletBase{
+    kind: 'signal';
+}
 declare interface IPackageDoclet {
     kind: 'package';
     longname: string;
@@ -161,6 +163,7 @@ declare type TDoclet = (
     | IMemberDoclet
     | INamespaceDoclet
     | ITypedefDoclet
+    | ISignalDoclet
 );
 
 declare type TAnyDoclet = TDoclet | IPackageDoclet;

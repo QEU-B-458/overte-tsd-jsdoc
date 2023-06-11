@@ -590,7 +590,8 @@ export class Emitter
                 this._markExportedParams(node, node.doclet.params);
                 this._markExportedReturns(node, node.doclet.returns);
                 break;
-
+            case 'signal':
+                break;
             default:
                 return assertNever(node.doclet);
         }
@@ -791,7 +792,8 @@ export class Emitter
             case 'event':
                 // TODO: Handle Events.
                 return null;
-
+            case 'signal':
+                return null;
             default:
                 return assertNever(node.doclet);
         }
