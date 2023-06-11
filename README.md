@@ -1,19 +1,8 @@
-# tsd-jsdoc
+# overte-tsd-jsdoc
 
-This library's goal is to be able to take as input a JSDoc annotated source JavaScript
-file (or many files) and output a single TypeScript Declaration File (.d.ts).
+ a fork of [tsd-jsdoc](https://github.com/englercj/jsdoc2tsd) to generate the type definitions for the overte scripting api
 
-It is distributed as a JSDoc3 template. Running JSDoc with this as the template should
-result in a TypeScript Definition File.
-
-## Installation
-
-You can install this module from npm:
-
-```
-$> npm install tsd-jsdoc
-```
-
+ Original readme starts here
 ## Usage
 
 To use this module, simply specify it as the template for your normal JSDoc generation.
