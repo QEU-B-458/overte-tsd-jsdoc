@@ -1,4 +1,7 @@
 # overte-tsd-jsdoc
+# WARNING DO NOT USE THIS TO REPLACE tsd-jsdoc
+## this is not an updated version of tsd-jsdoc.
+## this project is only intended to be used for overte
 
  a fork of [tsd-jsdoc](https://github.com/englercj/jsdoc2tsd) to generate the type definitions for the overte scripting api
 
