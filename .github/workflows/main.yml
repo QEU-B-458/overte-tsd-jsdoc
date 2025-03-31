@@ -1,0 +1,50 @@
+name: Build Archive
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+  # Optionally, you could also trigger this for releases or tags
+  # release:
+  #   types: [created]
+
+jobs:
+  create-archive:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js and install dependencies
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Use the Node.js version that fits your project
+
+      - name: Install dependencies
+        run: npm install
+
+      # Step 3: Build your project (Assuming `npm run build` generates `dist`)
+      - name: Build the project
+        run: npm run build  # This should output to the `dist` directory
+
+      # Step 4: Create the archive of the dist directory
+      - name: Create Archive
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          ARCHIVE_NAME="dist-${VERSION}.tar.gz"
+          tar -czf $ARCHIVE_NAME --directory dist .  # Archive the dist folder
+
+      # Step 5: Move the archive to the CMake 'overte-tsd-jsdoc' directory in the root
+      - name: Move archive to CMake directory
+        run: |
+          mkdir -p overte-tsd-jsdoc
+          mv dist-${VERSION}.tar.gz overte-tsd-jsdoc/
+
+      # Step 6: Upload the archive as an artifact
+      - name: Upload Archive as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-archive
+          path: overte-tsd-jsdoc/dist-${VERSION}.tar.gz
