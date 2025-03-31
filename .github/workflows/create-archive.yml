@@ -3,7 +3,7 @@ name: Create Archive
 on:
   push:
     branches:
-      - main  # or your default branch
+      - master  # or your default branch
   # Optionally, you could also trigger this for releases or tags
   # release:
   #   types: [created]
