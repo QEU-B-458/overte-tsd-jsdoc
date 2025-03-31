@@ -43,6 +43,7 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           mkdir -p overte-tsd-jsdoc
           mv dist-${VERSION}.tar.gz overte-tsd-jsdoc/
+          ls overte-tsd-jsdoc/
 
       # Step 6: Upload the archive as an artifact
       - name: Upload Archive as Artifact
