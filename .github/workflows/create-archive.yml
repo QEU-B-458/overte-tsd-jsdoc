@@ -40,8 +40,9 @@ jobs:
       # Step 5: Move the archive to the CMake 'overte-tsd-jsdoc' directory in the root
       - name: Move archive to CMake directory
         run: |
+          VERSION=$(node -p "require('./package.json').version")
           mkdir -p overte-tsd-jsdoc
-          mv ${ARCHIVE_NAME} overte-tsd-jsdoc/
+          mv dist-${VERSION}.tar.gz overte-tsd-jsdoc/
 
       # Step 6: Upload the archive as an artifact
       - name: Upload Archive as Artifact
