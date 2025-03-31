@@ -35,6 +35,7 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           ARCHIVE_NAME="dist-${VERSION}.tar.gz"
           tar -czf $ARCHIVE_NAME --directory dist .  # Archive the dist folder
+          ls
 
       # Step 5: Move the archive to the CMake 'overte-tsd-jsdoc' directory in the root
       - name: Move archive to CMake directory
