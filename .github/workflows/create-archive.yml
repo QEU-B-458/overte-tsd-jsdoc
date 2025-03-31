@@ -50,4 +50,4 @@ jobs:
         uses: actions/upload-artifact@v4.6.2
         with:
           name: dist-archive
-          path: overte-tsd-jsdoc/dist-${VERSION}.tar.gz
+          path: overte-tsd-jsdoc/*
