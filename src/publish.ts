@@ -89,7 +89,6 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
           definitionName = pkg.name.split('/').pop() || definitionName;
         }
         const out = path.join(opts.destination, opts.outFile || `${definitionName}.d.ts`);
-
         fs.writeFileSync(out, emitter.emit());
     }
 }
