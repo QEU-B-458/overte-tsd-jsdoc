@@ -2,7 +2,6 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as helper from 'jsdoc/util/templateHelper';
 import { Emitter } from './Emitter';
-import {parseAndSaveOutput} from './parse'
 import { setVerbose, setDebug, warn, debug, docletDebugInfo } from './logger';
 
 /**
@@ -86,7 +85,8 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         let filedata: string = emitter.emit().toString()
         console.log('stage1 starting preprocesing')
         filedata = filedata.replace(/(: void)/gmi, '');
-        console.log('stage2 replacing Void')
+        filedata = filedata.replace(/(: int)/gmi, ': number');
+        console.log('stage2 replacing Void and int')
 
         filedata = filedata.replace(/([a-zA-Z])~([a-zA-Z])/g, '$1.$2');
         // Remove "-" character from the type names
