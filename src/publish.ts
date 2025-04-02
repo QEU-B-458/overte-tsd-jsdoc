@@ -84,27 +84,29 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         }
 
         let filedata: string = emitter.emit().toString()
-        console.log('stage1')
+        console.log('stage1 starting preprocesing')
         filedata = filedata.replace(/(: void)/gmi, '');
-        console.log('stage2')
-        filedata = filedata.replace(/([a-zA-Z])~([a-zA-Z])/g, '$1.$2');
+        console.log('stage2 replacing Void')
 
+        filedata = filedata.replace(/([a-zA-Z])~([a-zA-Z])/g, '$1.$2');
         // Remove "-" character from the type names
         // (but not from YYYY-mm-dd) or (param X-coordinate)
         filedata = filedata.replace(/\b(([A-Z][a-z]+)+)-(([A-Z][a-z]+)+)\b/g, '$1$3');
-        console.log('stage3')
+        console.log('stage3 removing "-" from type names')
+
         // Namespace and types cannot share the same name.
         // Let's add prefix "T" to the types
         filedata = filedata.replace(/\b(Vec[2-4]|Mat4|Quat)\b/g, 'T$1');
-        console.log('stage4')
+        console.log('stage4 add prefix "T" to the types')
+
         // Restore previous names for namespace
         filedata = filedata.replace(/declare namespace T(Vec[2-4]|Mat4|Quat)/g, 'declare namespace $1');
-        console.log('stage5')
         filedata = filedata.replace(/\T(Vec[2-4]|Mat4|Quat)\./g, '$1.');
-        console.log('stage6')
+        console.log('stage5 Restore previous names for namespace')
+
         // "function" is really wrong name for na variable
         filedata = filedata.replace(/function: \(/g, 'fn: (');
-        console.log('stage7')
+        console.log('stage6 "function" is really wrong name for na variable')
 
         //console.log(filedata)
 
