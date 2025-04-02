@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as helper from 'jsdoc/util/templateHelper';
 import { Emitter } from './Emitter';
+import parseAndSaveOutput from './parse'
 import { setVerbose, setDebug, warn, debug, docletDebugInfo } from './logger';
 
 /**
@@ -90,6 +91,6 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         }
         const out = path.join(opts.destination, opts.outFile || `${definitionName}.d.ts`);
         fs.writeFileSync(out, emitter.emit());
-        console.log(emitter.emit());
+        parseAndSaveOutput(emitter.emit, out)
     }
 }
