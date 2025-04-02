@@ -85,7 +85,7 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         let filedata: string = emitter.emit().toString()
         console.log('stage1 starting preprocesing')
         filedata = filedata.replace(/(: void)/gmi, '');
-        filedata = filedata.replace(/(: int)/gmi, '');
+        filedata = filedata.replace(/(: int)/gmi, ': number');
         console.log('stage2 replacing Void and int')
 
         filedata = filedata.replace(/([a-zA-Z])~([a-zA-Z])/g, '$1.$2');
