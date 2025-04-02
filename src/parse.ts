@@ -22,3 +22,5 @@ export const parseAndSaveOutput = (outputLog: any, outputDirectory: string): voi
         console.log(`Saved: ${filePath}`);
     }
 }
+
+export default parseAndSaveOutput
