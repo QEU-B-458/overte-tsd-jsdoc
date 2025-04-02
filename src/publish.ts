@@ -91,6 +91,7 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         }
         const out = path.join(opts.destination, opts.outFile || `${definitionName}.d.ts`);
         fs.writeFileSync(out, emitter.emit());
+        console.log(out)
         parseAndSaveOutput(emitter.emit, out)
     }
 }
