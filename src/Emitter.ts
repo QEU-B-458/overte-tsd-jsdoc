@@ -92,8 +92,8 @@ export class Emitter
 
     emit()
     {
-        debug(`----------------------------------------------------------------`);
-        debug(`Emitter.emit()`);
+        console.log(`----------------------------------------------------------------`);
+        console.log(`Emitter.emit()`);
 
         const resultFile = ts.createSourceFile(
             'types.d.ts',
