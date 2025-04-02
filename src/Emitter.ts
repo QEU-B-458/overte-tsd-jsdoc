@@ -64,8 +64,9 @@ export class Emitter
 {
     results: ts.Node[] = [];
 
-    private _treeRoots: IDocletTreeNode[] = [];
-    private _treeNodes: Dictionary<IDocletTreeNode> = {};
+
+    _treeRoots: IDocletTreeNode[] = [];
+    _treeNodes: Dictionary<IDocletTreeNode> = {};
 
     // resolutionNeeded: IResolutionMap;
 
@@ -113,7 +114,6 @@ export class Emitter
         {
             out2 += printer.printNode(ts.EmitHint.Unspecified, this.results[i], resultFile);
             out2 += '\n\n newline \n';
-            console.log(out2)
         }
 
         return out2;

@@ -83,6 +83,10 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
             }
         }
 
+        const filedata: string = emitter.emit().toString()
+        console.log(filedata)
+
+
         const pkgArray: any = helper.find(data, { kind: 'package' }) || [];
         const pkg = pkgArray[0] as IPackageDoclet;
         let definitionName: string = 'types';
@@ -91,7 +95,7 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         }
         const out = path.join(opts.destination, opts.outFile || `${definitionName}.d.ts`);
         //fs.writeFileSync(out, emitter.emit());
-        emitter.emit()
+
     }
 }
 
