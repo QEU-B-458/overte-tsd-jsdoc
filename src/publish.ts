@@ -92,6 +92,6 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         const out = path.join(opts.destination, opts.outFile || `${definitionName}.d.ts`);
         fs.writeFileSync(out, emitter.emit());
         console.log("here i am ",out)
-        parseAndSaveOutput(emitter.emit, out)
+        parseAndSaveOutput(emitter.emit, opts.destination)
     }
 }
