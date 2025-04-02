@@ -101,8 +101,8 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         console.log('stage4 add prefix "T" to the types')
 
         // Restore previous names for namespace
-        filedata = filedata.replace(/declare namespace T(Vec[2-4]|Mat4|Quat)/g, 'declare namespace $1');
-        filedata = filedata.replace(/\T(Vec[2-4]|Mat4|Quat)\./g, '$1.');
+        filedata = filedata.replace(/\bdeclare namespace T(Vec[2-4]|Mat4|Quat)/g, 'declare namespace $1');
+        filedata = filedata.replace(/\bT(Vec[2-4]|Mat4|Quat)\./g, '$1.');
         console.log('stage5 Restore previous names for namespace')
 
         // "function" is really wrong name for na variable
