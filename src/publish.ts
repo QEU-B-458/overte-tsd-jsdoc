@@ -91,7 +91,7 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         filedata = filedata.replace(/([a-zA-Z])~([a-zA-Z])/g, '$1.$2');
         // Remove "-" character from the type names
         // (but not from YYYY-mm-dd) or (param X-coordinate)
-        //filedata = filedata.replace(/\b(([A-Z][a-z]+)+)-(([A-Z][a-z]+)+)\b/g, '$1$3');
+        filedata = filedata.replace(/\b(([A-Z][a-z]+)+)-(([A-Z][a-z]+)+)\b/g, '$1$3');
         console.log('stage3 removing "-" from type names')
 
         // Namespace and types cannot share the same name.

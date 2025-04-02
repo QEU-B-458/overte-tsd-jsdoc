@@ -113,7 +113,7 @@ export class Emitter
         for (let i = 0; i < this.results.length; ++i)
         {
             out2 += printer.printNode(ts.EmitHint.Unspecified, this.results[i], resultFile);
-            out2 = out2.replace(/\b(([A-Z][a-z]+)+)-(([A-Z][a-z]+)+)\b/g, '$1$3');
+            //out2 = out2.replace(/\b(([A-Z][a-z]+)+)-(([A-Z][a-z]+)+)\b/g, '$1$3');
             out2 += '\n\n';
         }
 
