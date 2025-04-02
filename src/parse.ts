@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-function parseAndSaveOutput(outputLog: any, outputDirectory: string) {
+export const parseAndSaveOutput = (outputLog: any, outputDirectory: string): void =>{
 
     // Regex to match an optional preceding comment block and the class definition
     const pattern = /(\/\*\*[\s\S]*?\*\/)?\s*(declare class (\w+)\s*{(?:[^{}]*{[^{}]*}[^{}]*)*})/g;
@@ -22,5 +22,3 @@ function parseAndSaveOutput(outputLog: any, outputDirectory: string) {
         console.log(`Saved: ${filePath}`);
     }
 }
-
-export default parseAndSaveOutput
