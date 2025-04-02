@@ -86,6 +86,7 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         console.log('stage1 starting preprocesing')
         filedata = filedata.replace(/(: void)/gmi, '');
         filedata = filedata.replace(/(: int)/gmi, ': number');
+        filedata = filedata.replace(/(numberer)/gmi, 'inter');
         console.log('stage2 replacing Void and int')
 
         filedata = filedata.replace(/([a-zA-Z])~([a-zA-Z])/g, '$1.$2');
