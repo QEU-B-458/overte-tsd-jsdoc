@@ -113,7 +113,7 @@ export class Emitter
         for (let i = 0; i < this.results.length; ++i)
         {
             out2 += printer.printNode(ts.EmitHint.Unspecified, this.results[i], resultFile);
-            out2 += '\n\n newline \n';
+            out2 += '\n\n';
         }
 
         return out2;

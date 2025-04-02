@@ -83,9 +83,26 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
             }
         }
 
-        const filedata: string = emitter.emit().toString()
-        console.log(filedata)
+        let filedata: string = emitter.emit().toString()
 
+        filedata = filedata.replace(/(: void)/gmi, '');
+        filedata = filedata.replace(/([a-zA-Z])~([a-zA-Z])/g, '$1.$2');
+
+        // Remove "-" character from the type names
+        // (but not from YYYY-mm-dd) or (param X-coordinate)
+        filedata = filedata.replace(/\b(([A-Z][a-z]+)+)-(([A-Z][a-z]+)+)\b/g, '$1$3');
+
+        // Namespace and types cannot share the same name.
+        // Let's add prefix "T" to the types
+        filedata = filedata.replace(/\b(Vec[2-4]|Mat4|Quat)\b/g, 'T$1');
+        // Restore previous names for namespace
+        filedata = filedata.replace(/declare namespace T(Vec[2-4]|Mat4|Quat)/g, 'declare namespace $1');
+        filedata = filedata.replace(/\T(Vec[2-4]|Mat4|Quat)\./g, '$1.');
+
+        // "function" is really wrong name for na variable
+        filedata = filedata.replace(/function: \(/g, 'fn: (');
+
+        console.log(filedata)
 
         const pkgArray: any = helper.find(data, { kind: 'package' }) || [];
         const pkg = pkgArray[0] as IPackageDoclet;
