@@ -106,7 +106,7 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         filedata = filedata.replace(/function: \(/g, 'fn: (');
         console.log('stage7')
 
-        console.log(filedata)
+        //console.log(filedata)
 
         const pkgArray: any = helper.find(data, { kind: 'package' }) || [];
         const pkg = pkgArray[0] as IPackageDoclet;
@@ -115,7 +115,7 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
           definitionName = pkg.name.split('/').pop() || definitionName;
         }
         const out = path.join(opts.destination, opts.outFile || `${definitionName}.d.ts`);
-        //fs.writeFileSync(out, emitter.emit());
+        fs.writeFileSync(out, filedata);
 
     }
 }
