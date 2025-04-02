@@ -5,7 +5,7 @@ export const parseAndSaveOutput = (outputLog: any, outputDirectory: string): voi
 
     // Regex to match an optional preceding comment block and the class definition
     const pattern = /(\/\*\*[\s\S]*?\*\/)?\s*(declare class (\w+)\s*{(?:[^{}]*{[^{}]*}[^{}]*)*})/g;
-
+	console.log('we ran')
 
     let match;
     while ((match = pattern.exec(outputLog)) !== null) {
