@@ -86,6 +86,8 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
         console.log('stage1 starting preprocesing')
         filedata = filedata.replace(/(: void)/gmi, '');
         filedata = filedata.replace(/(: int)/gmi, ': number');
+
+        // need to find the error for this and fix it. seems inter gets reformed into numberer
         filedata = filedata.replace(/(numberer)/gmi, 'Inter');
         console.log('stage2 replacing Void and int')
 
