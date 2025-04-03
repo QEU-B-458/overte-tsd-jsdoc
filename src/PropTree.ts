@@ -22,7 +22,7 @@ export class PropTree
 
             if (!prop || !prop.name)
             {
-                warn('Encountered a property with no name, this is likely due to invalid JSDoc. Skipping.');
+                warn(prop.name ,'Encountered a property with no name, this is likely due to invalid JSDoc. Skipping.');
                 continue;
             }
 
