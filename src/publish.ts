@@ -115,7 +115,7 @@ export function publish(data: TDocletDb, opts: ITemplateConfig)
 
         const pkgArray: any = helper.find(data, { kind: 'package' }) || [];
         const pkg = pkgArray[0] as IPackageDoclet;
-        let definitionName: string = 'types';
+        let definitionName: string = 'index';
         if (pkg && pkg.name) {
           definitionName = pkg.name.split('/').pop() || definitionName;
         }
