@@ -623,6 +623,33 @@ export function createNamespace(doclet: INamespaceDoclet, nested: boolean, child
 
     validateModuleChildren(children);
 
+    if (doclet.properties)
+        {
+            const tree = new PropTree(doclet.properties);
+
+            for (let i = 0; i < tree.roots.length; ++i)
+            {
+                const node = tree.roots[i];
+
+                const opt = node.prop.optional ? ts.createToken(ts.SyntaxKind.QuestionToken) : undefined;
+                const t = node.children.length ? createTypeLiteral(node.children, node) : resolveType(node.prop.type);
+
+                const property =
+                    ts.createVariableStatement(
+                        [],
+                        [ts.createVariableDeclaration(node.name, t)]
+                    );
+
+                if (node.prop.description)
+                {
+                    let comment = `*\n * ${node.prop.description.split(/\r\s*/).join("\n * ")}\n`;
+                    ts.addSyntheticLeadingComment(property, ts.SyntaxKind.MultiLineCommentTrivia, comment, true)
+                }
+
+                (children  as ts.Node[]).push(property);
+            }
+        }
+
     const mods = doclet.memberof ? undefined : [declareModifier];
     let body: ts.ModuleBlock | undefined = undefined;
     let flags = ts.NodeFlags.Namespace;
