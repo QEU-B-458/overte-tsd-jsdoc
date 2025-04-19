@@ -65,8 +65,8 @@ export class Emitter
     results: ts.Node[] = [];
 
 
-    _treeRoots: IDocletTreeNode[] = [];
-    _treeNodes: Dictionary<IDocletTreeNode> = {};
+    private _treeRoots: IDocletTreeNode[] = [];
+    private _treeNodes: Dictionary<IDocletTreeNode> = {};
 
     // resolutionNeeded: IResolutionMap;
 
@@ -97,7 +97,7 @@ export class Emitter
         console.log(`Emitter.emit()`);
 
         const resultFile = ts.createSourceFile(
-            'types.d.ts',
+            'index.d.ts',
             '',
             ts.ScriptTarget.Latest,
             false,
